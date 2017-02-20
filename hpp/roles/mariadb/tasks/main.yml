@@ -7,9 +7,10 @@
     - mariadb-test
 
 - name: Backup Configuration File
-  copy: src=/etc/my.cnf dest=/etc/my.cnf.bak
+  command: creates='/etc/my.cnf.bak' cp /etc/my.cnf /etc/my.cnf.bak
   notify:
     - restart mariadb
+
 
 # - name: Create MySQL Configuration File
 #   template: src=my.cnf.j2 dest=/etc/my.cnf
