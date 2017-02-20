@@ -1,0 +1,21 @@
+---
+
+- name: Install MariaDB Package
+  yum: name={{ item }} state=installed
+  with_items:
+    - mariadb-server
+    - mariadb-test
+
+- name: Backup Configuration File
+  copy: src=/etc/my.cnf dest=/etc/my.cnf.bak
+  notify:
+    - restart mariadb
+
+# - name: Create MySQL Configuration File
+#   template: src=my.cnf.j2 dest=/etc/my.cnf
+#   notify:
+#   - restart mariadb
+
+
+- name: MariaDB Service State
+  service: name=mariadb state=started enabled=yes

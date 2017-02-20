@@ -1,0 +1,6 @@
+# ---
+# - name: Install Firewalld
+#   yum: name=firewalld state=present
+  
+# - name: Firewalld Service State
+#   service: name=firewalld state=started enabled=yes
