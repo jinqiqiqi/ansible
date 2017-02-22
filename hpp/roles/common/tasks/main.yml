@@ -4,3 +4,6 @@
   
 # - name: Firewalld Service State
 #   service: name=firewalld state=started enabled=yes
+
+- name: Install Git tool
+  yum: name=git state=present
