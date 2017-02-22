@@ -6,6 +6,10 @@
   # remote_user: user
   become: yes
   
+
+  pre_tasks:
+    - name: update yum
+      yum: name=* state=latest
   roles:
   - common
   - mariadb
@@ -15,3 +19,8 @@
   tasks:
     - name: checkout code
       git: repo=https://github.com/jinqiqiqi/ansible.git dest=/vagrant/able accept_hostkey=yes
+
+  post_tasks:
+    - name: post tasks
+      command: pwd
+
