@@ -23,8 +23,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	# config.vm.synced_folder "~/Public/test/ansible/", "/usr/share/nginx/html/", type: "rsync", rsync__exclude: ".git/", rsync__args: ["--verbose", "--rsync-path='sudo rsync'", "--archive", "--delete", "-z"]
 	# config.vm.synced_folder "~/Public/test/ansible/", "/usr/share/nginx/html/", type: "nfs"
 
-    config.vm.provision "ansible" do |ansible|
+    config.vm.provision "hpp.io", type: "ansible" do |ansible|
+      ansible.verbose = "v"
       ansible.playbook = "hpp.yml"
+      # ansible.inventory_path = "./"
     end
 end
 

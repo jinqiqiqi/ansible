@@ -1,0 +1,47 @@
+---
+# defaults file for docker
+
+- name: Remove Unofficial Docker Packages
+  yum: name={{ item }} state=absent
+  with_items:
+    - docker
+    - docker-common
+    - container-selinux
+    - docker-selinux
+
+- name: Set up the repository
+  yum: name={{ item }} state=present
+  with_items:
+    - yum-utils
+    - python-docker-py
+  tags:
+    - box
+
+- name: Add Docker Main Repository
+  command: yum-config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/centos/docker.repo creates=/etc/yum.repos.d/docker.repo
+
+- name: Update Yum Cache and Install Docker-engine
+  yum: name=docker-engine state=latest update_cache=yes
+  notify: restart docker
+
+- name: data container
+  docker:
+    name: mydata
+    image: busybox
+    command: sleep 1d
+    state: present
+    volumes:
+      - /data
+  tags:
+    - box
+
+- name: Redis container
+  docker:
+    name: myredis
+    image: redis
+    command: redis-server --appendonly yes
+    state: started
+    volumes_from:
+      - mydata
+  tags:
+    - box

@@ -5,12 +5,12 @@
 # - name: Firewalld Service State
 #   service: name=firewalld state=started enabled=yes
 
-- name: wait for ssh server to be running on vagrant box
-  local_action: wait_for port=22 host=hpp.io search_regex=OpenSSH
-  failed_when: False
-  register: result
+# - name: wait for ssh server to be running on vagrant box
+#   local_action: wait_for port=22 host=hpp.io search_regex=OpenSSH
+#   failed_when: False
+#   register: result
 
-- debug: var=result
+# - debug: var=result
 
 - name: Install Git tool
   yum: name={{ item }} state=present

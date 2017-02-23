@@ -2,19 +2,21 @@
 - name: Install MariaDB, Nginx and PHP-FPM
   hosts: hpp-server
   become_user: root
+  become: yes
   # remote_user: root
   # remote_user: user
-  become: yes
   
 
   pre_tasks:
-    - name: update yum
+    - name: Update Yum
       yum: name=* state=latest
+
   roles:
   - common
   - mariadb
   - httpd
   - php-fpm
+  - docker
 
   tasks:
     - name: checkout code
