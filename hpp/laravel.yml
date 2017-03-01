@@ -1,0 +1,14 @@
+---
+- name: Install MariaDB, Nginx and PHP-FPM
+  hosts: hpp-server
+  become_user: root
+  # remote_user: root
+  # remote_user: user
+  become: yes
+  
+
+# tasks for laravel environment
+# redis, mysql, php, nginx
+  roles:
+  - laravel
+

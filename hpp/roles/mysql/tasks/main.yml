@@ -1,0 +1,23 @@
+---
+# tasks file for mysql
+
+- name: Install MySQL
+  yum: name={{ item }} state=latest
+  with_items:
+    - mariadb-server
+
+- name: Replace some text in /etc/my.cnf
+  lineinfile: 
+    dest=/etc/my.cnf 
+    insertafter="^\[mysqld\]"
+    state=present 
+    line={{ item }}
+  with_items:
+    - 'lower_case_table_names=1'
+    - 'character_set_server=utf8'
+    - 'collation_server=utf8_general_ci'
+    - 'max_allowed_packet=90M'
+  notify:
+    - restart mysql
+  tags:
+    - mm

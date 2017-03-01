@@ -18,9 +18,9 @@
   - php-fpm
   - docker
 
-  tasks:
-    - name: checkout code
-      git: repo=https://github.com/jinqiqiqi/ansible.git dest=/vagrant/able accept_hostkey=yes
+  # tasks:
+  #   - name: checkout code
+  #     git: repo=https://github.com/jinqiqiqi/ansible.git dest=/vagrant/able accept_hostkey=yes
 
   post_tasks:
     - name: post tasks

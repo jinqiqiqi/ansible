@@ -12,8 +12,18 @@
 
 # - debug: var=result
 
-- name: Install Git tool
-  yum: name={{ item }} state=present
+- name: Enable the EPEL, remi Repo
+  yum: name=epel-release state=latest
   with_items:
-    - git
-    - svn
+    - epel-release
+    - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+- name: Import The GPG Key of CentOS
+  rpm_key: state=present key={{ item }}
+  with_items:
+    - /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    - /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+    - /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+
+- name: Update All The Packages
+  yum: name="*" state=latest

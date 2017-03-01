@@ -2,3 +2,4 @@
 *.box
 *.retry
 */.vagrant
+.DS_Store

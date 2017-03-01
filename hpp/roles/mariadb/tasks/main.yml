@@ -7,7 +7,7 @@
     - mariadb-server
     - mariadb-test
 
-- debug: msg="hi distribution {{ ansible_distribution_version }}"
+# - debug: msg="hi distribution {{ ansible_distribution_version }}"
 
 - name: Backup Configuration File
   command: creates='/etc/my.cnf.bak' cp /etc/my.cnf /etc/my.cnf.bak
