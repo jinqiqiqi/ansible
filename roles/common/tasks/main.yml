@@ -14,12 +14,16 @@
 
 - name: Enable the EPEL, remi Repo
   yum: name={{ item }} state=present
+  tags:
+    - common
   with_items:
     - epel-release
     - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 
 - name: Import The GPG Key of CentOS
   rpm_key: state=present key={{ item }}
+  tags:
+    - common
   with_items:
     - /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     - /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
@@ -27,3 +31,5 @@
 
 - name: Update All The Packages
   yum: name="*" state=latest
+  tags:
+    - common

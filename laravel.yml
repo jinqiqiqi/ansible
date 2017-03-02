@@ -5,7 +5,6 @@
   # remote_user: root
   # remote_user: user
   become: yes
-  
 
 # tasks for laravel environment
 # redis, mysql, php, nginx

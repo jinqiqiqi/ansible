@@ -2,7 +2,9 @@
 # tasks file for mysql
 
 - name: Install MySQL
-  yum: name={{ item }} state=latest
+  yum: name={{ item }} state=present
+  tags:
+    - mysql
   with_items:
     - mariadb-server
 
@@ -20,4 +22,4 @@
   notify:
     - restart mysql
   tags:
-    - mm
+    - mysql

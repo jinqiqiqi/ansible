@@ -2,6 +2,8 @@
 # tasks file for php
 - name: Install PHP and PHP-FPM
   yum: name={{ item }} state=present
+  tags:
+    - php71
   with_items:
     - php71-php-mbstring
     - php71-php-mcrypt
@@ -17,8 +19,12 @@
 
 - name: Configuration to PHP
   template: src=php.ini.j2 dest=/etc/opt/remi/php71/php.ini
+  tags:
+    - php71
   notify: restart php71-php-fpm
 
 - name: Configuration to PHP-FPM
   template: src=www.conf.j2 dest=/etc/opt/remi/php71/php-fpm.d/www.conf
+  tags:
+    - php71
   notify: restart php71-php-fpm

@@ -1,6 +1,8 @@
 ---
 - name: Install Nginx
   yum: name=nginx state=present
+  tags:
+    - nginx
 
 # - name: Copy Nginx Configuration for Wordpress
 #   template: src=default.conf dest=/etc/nginx/conf.d/default.conf
@@ -10,5 +12,9 @@
 #   firewalld: port={{ nginx_port }}/tcp permanent=true state=enabled immediate=yes
 #   ignore_errors: yes
 
-- name: Nginx Service State
-  service: name=nginx state=started enabled=yes
+- name: Nginx move sites.conf files
+  template: src=sites.conf dest=/etc/nginx/conf.d/
+  tags:
+    - nginx
+  notify:
+    - restart nginx

@@ -1,0 +1,46 @@
+---
+# defaults file for nginx
+
+# nginx config variables
+nginx_hosts: [
+  {
+    listen: 80,
+    server_name: devel.ek,
+    index: "index.php index.html index.htm",
+    root: /usr/share/nginx/html/,
+    fastcgi_pass_host: php,
+    fastcgi_pass_port: 9000
+  },
+  {
+    listen: 80,
+    server_name: cats.ek,
+    index: "index.php index.html index.htm",
+    root: /usr/share/nginx/html/heroku/cats/public/,
+    fastcgi_pass_host: php,
+    fastcgi_pass_port: 9000
+  },
+  {
+    listen: 80,
+    server_name: laravel.ek,
+    index: "index.php index.html index.htm",
+    root: /usr/share/nginx/html/laravel/public/,
+    fastcgi_pass_host: php,
+    fastcgi_pass_port: 9000
+  },
+  {
+    listen: 80,
+    server_name: wheel.ek,
+    index: "index.php index.html index.htm",
+    root: /usr/share/nginx/html/wheel/,
+    fastcgi_pass_host: php,
+    fastcgi_pass_port: 9000
+  },
+  {
+    listen: 80,
+    server_name: youmei.ek,
+    index: "index.php index.html index.htm",
+    root: /usr/share/nginx/html/youmei/,
+    fastcgi_pass_host: php,
+    fastcgi_pass_port: 9000
+  },
+]
