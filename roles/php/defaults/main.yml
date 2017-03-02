@@ -1,2 +1,28 @@
 ---
 # defaults file for php
+
+# php variables
+php_display_errors: Off
+php_timezone: Asia/Shanghai
+php_expose_php: Off
+php_allow_url_fopen: On
+php_cgi_fix_pathinfo: 1
+php_session_name: HAPPYSPORTS_SESSION
+# php_session_save_handler: files
+# php_session_save_path: /tmp
+php_session_save_handler: redis
+php_session_save_path: tcp://127.0.0.1:6379?weight=1&timeout=60&database=15
+
+# php-fpm variables
+fpm_listen: "127.0.0.1:9000"
+fpm_listen_allowed_clients: "127.0.0.1"
+fpm_catch_workers_output: 'yes'
+fpm_session_gc_maxlifetime: 3600
+fpm_memory_limit: '128M'
+
+
+
+
+
+
+
