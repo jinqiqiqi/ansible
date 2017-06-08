@@ -13,11 +13,11 @@
 - name: Start/Restart Gitlab container
   docker_container:
     name: gitlabce
-    hostname: gitlab.ce
+    hostname: "{{ gitlab_domain_name }}"
     image: gitlab/gitlab-ce
     state: started
     restart: yes
-    env: GITLAB_OMNIBUS_CONFIG="external_url '{{ gitlab_domain_name }}'; gitlab_rails['smtp_enable'] = true; gitlab_rails['smtp_address'] = 'smtp.boe.com.cn'; gitlab_rails['smtp_port'] = 25; gitlab_rails['smtp_user_name'] = 'jinqi@boe.com.cn'; gitlab_rails['smtp_password'] = 'g00d8ye.'; gitlab_rails['smtp_domain'] = 'boe.com.cn'; gitlab_rails['smtp_authentication'] = 'login'; gitlab_rails['smtp_enable_starttls_auto'] = true; gitlab_rails['smtp_tls'] = false;"
+    env: GITLAB_OMNIBUS_CONFIG="external_url '{{ gitlab_protocl }}{{ gitlab_domain_name }}'; gitlab_rails['smtp_enable']=true; gitlab_rails['smtp_address']='smtp.boe.com.cn'; gitlab_rails['smtp_port']=25; gitlab_rails['smtp_user_name']='jinqi@boe.com.cn'; gitlab_rails['smtp_password']='g00d8ye.'; gitlab_rails['smtp_domain']='boe.com.cn'; gitlab_rails['smtp_authentication']='login'; gitlab_rails['smtp_enable_starttls_auto']=flase; gitlab_rails['smtp_tls']=false;gitlab_rails['smtp_openssl_verify_mode']='none';gitlab_rails['gitlab_email_enabled'] = true;gitlab_rails['gitlab_email_from'] = 'jinqi@boe.com.cn';gitlab_rails['gitlab_email_display_name'] = 'Gitlab Notification';gitlab_rails['gitlab_email_reply_to'] = 'noreply@boe.com.cn';gitlab_rails['gitlab_email_subject_suffix'] = '';"
     ports:
         - "22:22"
         - "80:80"

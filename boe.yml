@@ -1,6 +1,7 @@
 ---
 - name: Setup the environment of docker
-  hosts: boe-server
+  hosts: test.boe
+  # hosts: boe-server
   become_user: root
   become: yes
   # remote_user: root
