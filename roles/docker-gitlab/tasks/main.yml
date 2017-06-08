@@ -1,0 +1,29 @@
+---
+# tasks file for docker-gitlab
+
+- name: "Pull gitlab/gitlab-ce:latest image"
+  docker_image: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gitlab/gitlab-ce:latest
+  tags:
+    - gitlab
+
+- name: Start/Restart Gitlab container
+  docker_container:
+    name: gitlabce
+    hostname: gitlab.ce
+    image: gitlab/gitlab-ce
+    state: started
+    restart: yes
+    env: GITLAB_OMNIBUS_CONFIG="external_url '{{ gitlab_domain_name }}';"
+    ports:
+        - "22:22"
+        - "80:80"
+    volumes:
+        - "{{ gitlab_config_dir }}:/etc/gitlab"
+        - "{{ gitlab_logs_dir }}:/var/log/gitlab"
+        - "{{ gitlab_data_dir }}:/var/opt/gitlab/"
+  tags:
+    - gitlabce

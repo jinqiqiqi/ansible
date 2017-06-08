@@ -19,8 +19,11 @@
 - name: Add Docker Main Repository
   command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo creates=/etc/yum.repos.d/docker-ce.repo
 
-- name: Update Yum Cache and Install Docker-ce
-  yum: name=docker-ce state=latest update_cache=yes
+- name: Update Yum Cache, Install docker-ce and docker-python
+  yum: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - docker-ce
+    - docker-python
   notify: restart docker
 
 - name: Change the dockerd configure file

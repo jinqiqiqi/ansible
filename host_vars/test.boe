@@ -1,0 +1,6 @@
+---
+# gitlab configurations options
+gitlab_domain_name: http://gitlab.boe.tt
+gitlab_config_dir: "/home/Data/gitlab/config"
+gitlab_logs_dir: "/home/Data/gitlab/logs"
+gitlab_data_dir: "/home/Data/gitlab/data"
