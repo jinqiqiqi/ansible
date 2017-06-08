@@ -18,7 +18,7 @@
     - common
   with_items:
     - epel-release
-    - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    # - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 
 - name: Import The GPG Key of CentOS
   rpm_key: state=present key={{ item }}
@@ -27,7 +27,7 @@
   with_items:
     - /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     - /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-    - /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+    # - /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
 
 - name: Update All The Packages
   yum: name="*" state=latest

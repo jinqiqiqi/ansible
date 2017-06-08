@@ -1,8 +1,6 @@
 *.komodoproject
 *.box
 *.retry
-*/.vagrant
-.DS_Store
 *.vagrant
 .DS_Store
 .vagrant

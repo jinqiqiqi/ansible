@@ -1,0 +1,19 @@
+---
+- name: Setup the environment of docker
+  hosts: test.boe
+  become_user: root
+  become: yes
+  # remote_user: root
+  # remote_user: user
+  
+  pre_tasks:
+    - name: Pre Task => Update Yum
+      yum: name=* state=latest
+
+  roles:
+  - docker
+
+  # post_tasks:
+  #   - name: post tasks
+  #     yum: name=* state=latest
+

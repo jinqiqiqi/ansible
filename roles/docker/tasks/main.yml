@@ -13,35 +13,23 @@
   yum: name={{ item }} state=present
   with_items:
     - yum-utils
-    - python-docker-py
-  tags:
-    - box
+    - device-mapper-persistent-data
+    - lvm2
 
 - name: Add Docker Main Repository
-  command: yum-config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/centos/docker.repo creates=/etc/yum.repos.d/docker.repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo creates=/etc/yum.repos.d/docker-ce.repo
 
-- name: Update Yum Cache and Install Docker-engine
-  yum: name=docker-engine state=latest update_cache=yes
+- name: Update Yum Cache and Install Docker-ce
+  yum: name=docker-ce state=latest update_cache=yes
   notify: restart docker
 
-- name: data container
-  docker:
-    name: mydata
-    image: busybox
-    command: sleep 1d
-    state: present
-    volumes:
-      - /data
+- name: Change the dockerd configure file
+  copy:
+    src: docker.service
+    dest: /usr/lib/systemd/system/docker.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart docker
   tags:
-    - box
-
-- name: Redis container
-  docker:
-    name: myredis
-    image: redis
-    command: redis-server --appendonly yes
-    state: started
-    volumes_from:
-      - mydata
-  tags:
-    - box
+    - yey
