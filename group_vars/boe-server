@@ -1,6 +1,7 @@
 ---
 # gitlab configurations options
-gitlab_domain_name: http://gitlab.boe.tt
+gitlab_protocl: "http://"
+gitlab_domain_name: "git.ct.boe.com.cn"
 gitlab_config_dir: "/home/Data/gitlab/config"
 gitlab_logs_dir: "/home/Data/gitlab/logs"
 gitlab_data_dir: "/home/Data/gitlab/data"
