@@ -9,7 +9,7 @@
   tags:
     - java
 
-- name: unarchive the jdk-8u131 file.
+- name: Unarchive the jdk-8u131 file.
   unarchive:
     src: "/opt/jdk-8u131-linux-x64.tar.gz"
     dest: "/opt/"
@@ -22,55 +22,17 @@
 
 - name: Alternatives link to installed java
   alternatives:
-    name: java
-    link: /usr/bin/java
-    path: /opt/jdk1.8.0_131/bin/java
+    name: "{{item}}"
+    link: "/usr/bin/{{item}}"
+    path: "/opt/jdk1.8.0_131/bin/{{item}}"
     priority: 2
-  tags:
-    - java
-
-- name: Alternatives link to installed javaws
-  alternatives:
-    name: javaws
-    link: /usr/bin/javaws
-    path: /opt/jdk1.8.0_131/bin/javaws
-    priority: 2
-  tags:
-    - java
-
-- name: Alternatives link to installed javac
-  alternatives:
-    name: javac
-    link: /usr/bin/javac
-    path: /opt/jdk1.8.0_131/bin/javac
-    priority: 2
-  tags:
-    - java
-
-- name: Alternatives link to installed javap
-  alternatives:
-    name: javap
-    link: /usr/bin/javap
-    path: /opt/jdk1.8.0_131/bin/javap
-    priority: 2
-  tags:
-    - java
-
-- name: Alternatives link to installed jar
-  alternatives:
-    name: jar
-    link: /usr/bin/jar
-    path: /opt/jdk1.8.0_131/bin/jar
-    priority: 2
-  tags:
-    - java
-
-- name: Alternatives link to installed jps
-  alternatives:
-    name: jps
-    link: /usr/bin/jps
-    path: /opt/jdk1.8.0_131/bin/jps
-    priority: 2
+  with_items:
+    - 'java'
+    - 'javaws'
+    - 'javac'
+    - 'javap'
+    - 'jar'
+    - 'jps'
   tags:
     - java
 
@@ -85,4 +47,4 @@
     - "export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
     - "export PATH=$PATH:$JAVA_HOME/bin"
   tags:
-    - javal
+    - java

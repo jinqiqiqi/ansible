@@ -1,0 +1,41 @@
+---
+# tasks file for ssh
+
+- name: Install SSH server and clients
+  yum: name={{ item }} state=present
+  with_items:
+    - openssh-server
+    - openssh-clients
+  notify: restart sshd
+
+- name: Generate SSH Keys
+  shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
+  args:
+    creates: /root/.ssh/id_rsa
+
+- name: fetch file
+  fetch:
+    src: "/root/.ssh/{{item}}"
+    dest: ./node_files
+  with_items:
+    - id_rsa
+    - id_rsa.pub
+
+- name: Authorized_keys
+  authorized_key:
+    user: root
+    state: present
+    manage_dir: yes
+    key: "{{ lookup('file', 'node_files/{{item}}/root/.ssh/id_rsa.pub')}}"
+  with_items:
+    - namenode
+    - datanode1
+
+- name: Add hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "{{hostvars[item]['ansible_ssh_host']}} {{item}}"
+  with_items:
+    - namenode
+    - datanode1
+

@@ -3,10 +3,10 @@
 
 - name: Install MySQL
   yum: name={{ item }} state=present
-  tags:
-    - mysql
   with_items:
     - mariadb-server
+  tags:
+    - mysql
 
 - name: Replace some text in /etc/my.cnf
   lineinfile: 

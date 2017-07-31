@@ -4,3 +4,4 @@
 *.vagrant
 .DS_Store
 .vagrant
+node_files/*

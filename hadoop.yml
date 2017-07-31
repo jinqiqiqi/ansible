@@ -11,7 +11,8 @@
   #     yum: name=* state=latest
 
   roles:
-    - java8
+    # - java8
+    - ssh
 
   # post_tasks:
   #   - name: post tasks
