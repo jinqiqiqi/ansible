@@ -1,0 +1,7 @@
+---
+# handlers file for roles/ntpd
+
+- name: restart ntpd
+  service: name={{item}} state=restarted enabled=yes
+  with_items:
+    - ntpd

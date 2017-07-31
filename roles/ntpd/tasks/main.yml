@@ -1,0 +1,17 @@
+---
+# tasks file for roles/ntpd
+
+- name: Install NTPd server
+  yum: name={{item}} state=latest
+  with_items:
+    - ntp
+    - ntpdate
+  notify: restart ntpd
+
+- name: Link localtime
+  file:
+    src: /usr/share/zoneinfo/Asia/Shanghai
+    dest: /etc/localtime
+    state: link
+    force: yes
+

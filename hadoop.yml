@@ -12,7 +12,8 @@
 
   roles:
     # - java8
-    - ssh
+    # - ssh
+    - ntpd
 
   # post_tasks:
   #   - name: post tasks
