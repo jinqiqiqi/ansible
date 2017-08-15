@@ -33,3 +33,25 @@
   yum: name="*" state=latest
   tags:
     - common
+
+- name: Install some debug tools
+  yum: name={{ item }} state=present
+  tags:
+    - common
+  with_items:
+    - lsof
+    - telnet
+    - vim
+    - tree
+    
+
+- name: Replace to disable in selinux configuration file 1
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: 'SELINUX=disabled'
+    
+- name: Disable the selinux right now
+  selinux:
+    state: disabled
+    

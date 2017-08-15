@@ -1,3 +1,54 @@
 ---
 # tasks file for docker-registry
 
+- name: "Pull docker reigstry image"
+  docker_image: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - registry
+  tags:
+    - docker-registry
+    
+
+- name: Start/Restart docker registry container
+  docker_container:
+    name: boe-docker-registry
+    hostname: "{{ gitlab_domain_name }}"
+    image: registry
+    state: started
+    restart: yes
+    env: 
+    ports:
+        - "5000:5000"
+    volumes:
+        - "{{ registry_data_dir }}:/tmp/registry"
+  tags:
+    - docker-registry
+
+- name: Create direcoty for ssl files
+  file:
+    path: /opt/nginx/ssl
+    state: directory
+    mode: 0755
+  tags:
+    - docker-registry
+  
+  
+- name: Nginx ssl files
+  template: src={{ item }} dest=/opt/nginx/ssl/
+  with_items:
+    - "nginx.crt"
+    - "nginx.key"
+    - ".htpasswd"
+    
+  tags:
+    - docker-registry
+
+
+- name: Nginx move docker_registry.conf file
+  template: src=docker_registry.conf dest=/etc/nginx/conf.d/
+  tags:
+    - docker-registry
+  notify:
+    - restart nginx

@@ -5,3 +5,4 @@
 .DS_Store
 .vagrant
 node_files/*
+ping.result

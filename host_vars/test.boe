@@ -2,9 +2,9 @@
 # gitlab configurations options
 gitlab_protocl: "http://"
 gitlab_domain_name: "gitlab.boe.tt"
-gitlab_config_dir: "/home/Data/gitlab/config"
-gitlab_logs_dir: "/home/Data/gitlab/logs"
-gitlab_data_dir: "/home/Data/gitlab/data"
+gitlab_config_dir: "~/Data/gitlab/config"
+gitlab_logs_dir: "~/Data/gitlab/logs"
+gitlab_data_dir: "~/Data/gitlab/data"
 
 smtp_enable: "true"
 smtp_address: "smtp.boe.com.cn"
@@ -21,3 +21,18 @@ gitlab_email_from: "jinqi@boe.com.cn"
 gitlab_email_display_name: "Gitlab Notification"
 gitlab_email_reply_to: "noreply@boe.com.cn"
 gitlab_email_subject_suffix: ""
+gitlab_ssh_port: "2233"
+
+docker_gitlab_ce: [
+    {
+        listen: 80,
+        server_name: gitlab.boe.tt,
+        client_max_body_size: 0  
+    }
+]
+
+docker_gitlab_ce_domain: "127.0.0.1"
+docker_gitlab_ce_port: 8888
+
+
+registry_data_dir: "~/Data/registry"

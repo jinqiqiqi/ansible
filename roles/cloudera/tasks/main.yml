@@ -1,0 +1,38 @@
+---
+# tasks file for roles/cloudera
+# https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/cloudera-cdh5.repo
+# https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/cloudera-cdh5.repo
+- name: Download Cloudera manager repository
+  get_url:
+    url: http://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo
+    dest: /etc/yum.repos.d/cloudera-manager.repo
+    timeout: 30
+  tags:
+    - cm
+
+- name: Download Cloudera cdh5 repository
+  get_url:
+    url: http://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/cloudera-cdh5.repo
+    dest: /etc/yum.repos.d/cloudera-cdh5.repo
+    timeout: 30
+  tags:
+    - cm
+
+- name: Import The GPG Key of Cloudera Manager
+  rpm_key: state=present key={{ item }}
+  with_items:
+    - https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/RPM-GPG-KEY-cloudera
+    - https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/RPM-GPG-KEY-cloudera
+  tags:
+    - cm
+
+- name: Install Cloudera Manager
+  yum: name={{item}} state=present
+  with_items:
+    - cloudera-manager-agent
+    - cloudera-manager-server
+    - cloudera-manager-server-db-2
+    - hadoop
+  notify: restart cloudera-scm
+  tags:
+    - cm

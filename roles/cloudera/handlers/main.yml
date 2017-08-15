@@ -1,0 +1,9 @@
+---
+# handlers file for roles/cloudera
+
+- name: restart cloudera-scm
+  service: name=cloudera-scm-server-db state=restarted enabled=yes
+  with_items:
+    - cloudera-scm-server-db
+    - cloudera-scm-agent
+    - cloudera-scm-server

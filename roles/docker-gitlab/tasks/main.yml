@@ -6,24 +6,31 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - gitlab/gitlab-ce:latest
+    - gitlab/gitlab-ce
   tags:
-    - gitlab
+    - gitlabce
 
 - name: Start/Restart Gitlab container
   docker_container:
-    name: gitlabce
+    name: gitlab_ce
     hostname: "{{ gitlab_domain_name }}"
     image: gitlab/gitlab-ce
     state: started
     restart: yes
     env: GITLAB_OMNIBUS_CONFIG="external_url '{{ gitlab_protocl }}{{ gitlab_domain_name }}'; gitlab_rails['smtp_enable']={{smtp_enable}}; gitlab_rails['smtp_address']='{{smtp_address}}'; gitlab_rails['smtp_port']={{smtp_port}}; gitlab_rails['smtp_user_name']='{{smtp_user_name}}'; gitlab_rails['smtp_password']='{{smtp_password}}'; gitlab_rails['smtp_domain']='{{smtp_domain}}'; gitlab_rails['smtp_authentication']='{{smtp_authentication}}'; gitlab_rails['smtp_enable_starttls_auto']={{smtp_enable_starttls_auto}}; gitlab_rails['smtp_tls']={{smtp_tls}};gitlab_rails['smtp_openssl_verify_mode']='{{smtp_openssl_verify_mode}}';gitlab_rails['gitlab_email_enabled'] = {{gitlab_email_enabled}};gitlab_rails['gitlab_email_from'] = '{{gitlab_email_from}}';gitlab_rails['gitlab_email_display_name'] = '{{gitlab_email_display_name}}';gitlab_rails['gitlab_email_reply_to'] = '{{gitlab_email_reply_to}}';gitlab_rails['gitlab_email_subject_suffix'] = '{{gitlab_email_subject_suffix}}';"
     ports:
-        - "22:22"
-        - "80:80"
+        - "{{ gitlab_ssh_port }}:22"
+        - "{{ docker_gitlab_ce_port }}:80"
     volumes:
         - "{{ gitlab_config_dir }}:/etc/gitlab"
         - "{{ gitlab_logs_dir }}:/var/log/gitlab"
         - "{{ gitlab_data_dir }}:/var/opt/gitlab/"
   tags:
     - gitlabce
+    
+- name: Update the nginx config
+  template: src=gitlab.conf dest=/etc/nginx/conf.d/
+  tags:
+    - gitlabce
+  notify:
+    - restart nginx

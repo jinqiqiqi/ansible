@@ -21,3 +21,39 @@ gitlab_email_from: "gitlab@boe.com.cn"
 gitlab_email_display_name: "Gitlab通知邮件"
 gitlab_email_reply_to: "gitlab@boe.com.cn"
 gitlab_email_subject_suffix: ""
+
+gitlab_ssh_port: "22"
+
+
+docker_gitlab_ce: [
+  {
+    listen: 80,
+    server_name: git.ct.boe.com.cn,
+    client_max_body_size: 0
+  }
+]
+
+docker_gitlab_ce_domain: "127.0.0.1"
+docker_gitlab_ce_port: 8888
+
+registry_data_dir: "/home/Data/registry"
+
+
+
+
+docker_registry_hosts: [
+  {
+    listen: 443,
+    server_name: git.ct.boe.com.cn,
+    ssl: "on",
+    ssl_certificate: "/opt/nginx/ssl/nginx.crt",
+    ssl_certificate_key: "/opt/nginx/ssl/nginx.key",
+    client_max_body_size: 0,
+    auth_basic_user_file: "/opt/nginx/ssl/.htpasswd"
+  }
+]
+
+docker_registry_domain: "127.0.0.1"
+docker_registry_port: 5000
+
+

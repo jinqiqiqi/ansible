@@ -11,9 +11,12 @@
   #     yum: name=* state=latest
 
   roles:
-    # - java8
-    # - ssh
+    - java8
+    - ssh
     - ntpd
+    - postgres
+    - cloudera
+
 
   # post_tasks:
   #   - name: post tasks

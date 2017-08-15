@@ -1,0 +1,14 @@
+---
+# tasks file for roles/postgres
+
+- name: INstall PostgreSQL
+  yum: name=postgresql-server state=present
+
+- name: Install PostgreSQL
+  yum: name={{item}} state=present
+  with_items:
+    - postgresql-server
+    - postgresql
+  notify: restart postgresql
+  tags:
+    - postgres
