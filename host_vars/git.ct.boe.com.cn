@@ -55,5 +55,5 @@ docker_registry_hosts: [
 
 docker_registry_domain: "127.0.0.1"
 docker_registry_port: 5000
-
+registry_domain: "git.ct.boe.com.cn"
 

@@ -10,7 +10,7 @@
 #   failed_when: False
 #   register: result
 
-# - debug: var=result
+
 
 - name: Enable the EPEL, remi Repo
   yum: name={{ item }} state=present
@@ -54,4 +54,7 @@
 - name: Disable the selinux right now
   selinux:
     state: disabled
+
+
+
     

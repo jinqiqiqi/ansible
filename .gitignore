@@ -6,3 +6,4 @@
 .vagrant
 node_files/*
 ping.result
+test

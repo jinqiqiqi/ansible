@@ -1,28 +1,28 @@
 ---
-- name: Install MariaDB, Nginx and PHP-FPM
-  hosts: hpp-server
+- name: HPP testing book
+  hosts: test.boe
   become_user: root
   become: yes
   # remote_user: root
   # remote_user: user
   
 
-  pre_tasks:
-    - name: Update Yum
-      yum: name=* state=latest
+  # pre_tasks:
+  #   - name: Update Yum
+  #     yum: name=* state=latest
 
   roles:
   - common
-  - mariadb
-  - httpd
-  - php-fpm
-  - docker
+  # - mariadb
+  # - httpd
+  # - php-fpm
+  # - docker
 
   # tasks:
   #   - name: checkout code
   #     git: repo=https://github.com/jinqiqiqi/ansible.git dest=/vagrant/able accept_hostkey=yes
 
-  post_tasks:
-    - name: post tasks
-      command: pwd
+  # post_tasks:
+  #   - name: post tasks
+  #     command: pwd
 

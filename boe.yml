@@ -1,7 +1,7 @@
 ---
 - name: Setup the environment of docker
-  # hosts: test.boe
-  hosts: git.ct.boe.com.cn
+  hosts: test.boe
+  # hosts: git.ct.boe.com.cn
   # hosts: boe-server
   become_user: root
   become: yes
@@ -11,7 +11,7 @@
   #     yum: name=* state=latest
 
   roles:
-  - docker-gitlab
+  # - docker-gitlab
   - docker-registry
   # post_tasks:
   #   - name: post tasks

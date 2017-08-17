@@ -26,6 +26,20 @@
   tags:
     - docker-registry
 
+
+# - name: debugging
+#   setup: filter=ansible_nodename
+#   register: vm_hostname
+#   tags:
+#     - ddd
+
+# - name: debugging vm_hostname
+#   debug: 
+#     var: vm_hostname.ansible_facts.ansible_nodename
+#   tags:
+#     - ddd
+
+
 - name: Create direcoty for ssl files
   file:
     path: /opt/nginx/ssl
@@ -34,14 +48,12 @@
   tags:
     - docker-registry
   
-  
 - name: Nginx ssl files
-  template: src={{ item }} dest=/opt/nginx/ssl/
+  template: src={{ registry_domain }}/{{ item }} dest=/opt/nginx/ssl/
   with_items:
     - "nginx.crt"
     - "nginx.key"
     - ".htpasswd"
-    
   tags:
     - docker-registry
 
