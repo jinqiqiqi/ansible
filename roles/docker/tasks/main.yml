@@ -1,41 +1,54 @@
 ---
 # defaults file for docker
 
-- name: Remove Unofficial Docker Packages
-  yum: name={{ item }} state=absent
-  with_items:
-    - docker
-    - docker-common
-
-- name: Set up the repository
+- name: Install Intergrated Docker Packages
   yum: name={{ item }} state=present
   with_items:
-    - yum-utils
-    - device-mapper-persistent-data
-    - lvm2
-
-- name: Add Docker Main Repository
-  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo creates=/etc/yum.repos.d/docker-ce.repo
-
-- name: Update Yum Cache, Install docker-ce and docker-python
-  yum: name={{ item }} state=latest
-  with_items:
-    - docker-ce
+    - docker
     - docker-python
   notify: restart docker
-
-- name: Change the dockerd configure file
-  copy:
-    src: docker.service
-    dest: /usr/lib/systemd/system/docker.service
-    owner: root
-    group: root
-    mode: 0644
-  notify: restart docker
   tags:
-    - docker
+    - idocker
 
-- name: start/restart Service Dockder
-  systemd:
-    state: started
-    name: docker
+# - name: Remove Unofficial Docker Packages
+#   yum: name={{ item }} state=absent
+#   with_items:
+#     - docker
+#     - docker-common
+
+# - name: Set up the repository
+#   yum: name={{ item }} state=present
+#   with_items:
+#     - yum-utils
+#     - device-mapper-persistent-data
+#     - lvm2
+
+# - name: Add Docker Main Repository
+#   command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo creates=/etc/yum.repos.d/docker-ce.repo
+
+# - name: Update Yum Cache, Install docker-ce and docker-python
+#   yum: name={{ item }} state=latest
+#   with_items:
+#     - docker-ce
+#     - docker-python
+#   notify: restart docker
+
+# - name: Change the dockerd configure file
+#   copy:
+#     src: docker.service
+#     dest: /usr/lib/systemd/system/docker.service
+#     owner: root
+#     group: root
+#     mode: 0644
+#   notify: restart docker
+#   tags:
+#     - docker
+
+
+
+# - name: start/restart Service Dockder
+#   systemd:
+#     state: started
+#     name: docker
+
+

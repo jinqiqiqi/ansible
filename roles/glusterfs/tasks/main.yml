@@ -1,0 +1,26 @@
+---
+# tasks file for roles/glusterfs
+
+
+
+
+- name: Install GlusterFS Repository
+  yum: name={{ item }} state=present
+  with_items:
+    - centos-release-gluster310.noarch
+  # notify: restart docker
+  tags:
+    - glusterfs
+
+- name: Install GlusterFS Packages
+  yum: name={{ item }} state=present
+  with_items:
+    - glusterfs
+    - glusterfs-cli
+    - glusterfs-fuse
+    - glusterfs-api
+    - glusterfs-server
+    - glusterfs-ganesha
+  notify: restart glusterd
+  tags:
+    - glusterfs

@@ -7,10 +7,18 @@ hpp.io ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_ssh_user=vagrant
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=kinch ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 [boe-server]
-test.boe ansible_ssh_host=192.168.121.246 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/default/libvirt/private_key
+test.boe ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/virtual_test/libvirt/private_key
 git.ct.boe.com.cn ansible_ssh_host=10.17.100.182 ansible_ssh_port=2222 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 [hadoop]
 namenode ansible_ssh_host=192.168.33.10 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/Public/devops/vagrant/hadoop/.vagrant/machines/namenode/virtualbox/private_key
 datanode1 ansible_ssh_host=192.168.33.11 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/Public/devops/vagrant/hadoop/.vagrant/machines/datanode1/virtualbox/private_key
 
+[glusterfs]
+master ansible_ssh_host=192.168.33.40 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=test/.vagrant/machines/master/libvirt/private_key
+
+slave1 ansible_ssh_host=192.168.33.41 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=test/.vagrant/machines/slave1/libvirt/private_key
+
+slave2 ansible_ssh_host=192.168.33.42 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=test/.vagrant/machines/slave2/libvirt/private_key
+
+client ansible_ssh_host=192.168.33.43 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=test/.vagrant/machines/client/libvirt/private_key

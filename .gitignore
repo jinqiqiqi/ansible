@@ -7,3 +7,4 @@
 node_files/*
 ping.result
 test
+*.retry
