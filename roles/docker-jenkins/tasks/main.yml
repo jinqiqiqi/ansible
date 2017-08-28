@@ -1,0 +1,53 @@
+---
+# tasks file for roles/docker-jenkins
+
+- name: Create directory for jenkins data
+  file:
+    path: "{{ jenkins_data_dir }}"
+    state: directory
+    mode: 0777
+  tags:
+    - docker-jenkins
+
+- name: "Login to git.ct.boe.com.cn"
+  docker_login:
+    registry: git.ct.boe.com.cn
+    username: boe
+    password: boe
+  tags:
+    - docker-jenkins
+
+- name: "Pull docker jenkins image"
+  docker_image: 
+    name: "{{ item }}"
+    state: present
+    cacert_path: "/etc/docker/certs.d/git.ct.boe.com.cn/ca.crt"
+  with_items:
+    - git.ct.boe.com.cn/jenkins
+  tags:
+    - docker-jenkins
+    
+
+- name: Start/Restart docker jenkins container
+  docker_container:
+    image: git.ct.boe.com.cn/jenkins
+    name: boe-docker-jenkins
+    hostname: "{{ jenkins_domain_name }}"
+    state: started
+    restart: yes
+    env: 
+    ports:
+        - "8080:8080"
+        - "50000:50000"
+    volumes:
+        - "{{ jenkins_data_dir }}:/var/jenkins_home"
+        - "/var/run/docker.sock:/var/run/docker.sock"
+  tags:
+    - docker-jenkins
+
+- name: Update the nginx config
+  template: src=jenkins.conf dest=/etc/nginx/conf.d/
+  tags:
+    - docker-jenkins
+  notify:
+    - restart nginx

@@ -1,4 +1,5 @@
-ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+# ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
 
 
 VAGRANTFILE_API_VERSION = "2"
@@ -26,9 +27,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		machine.vm.box = "centos/7"
 	#	machine.vm.box = "fedora/25-cloud-base"
 		machine.vm.hostname = "test.boe"
-		machine.vm.network "forwarded_port", guest: 80, host: 8088
-		machine.vm.network "forwarded_port", guest: 22, host: 2232
-		machine.vm.network "forwarded_port", guest: 433, host: 8433
+		machine.vm.network :private_network, :ip => "192.168.33.13",
+		# :dev => 'virbr0-nic',
+		:type => 'bridge',
+		:mode => 'bridge'
+		# machine.vm.network "forwarded_port", guest: 80, host: 8088
+		# machine.vm.network "forwarded_port", guest: 22, host: 2232
+		# machine.vm.network "forwarded_port", guest: 433, host: 8433
 
 		# machine.ssh.port = 2222
 		# machine.ssh.guest_port = 2222
@@ -61,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
 	   machine.vm.provision "ansible" do |ansible|
-	     ansible.playbook = "boe.yml"
+	     ansible.playbook = "docker-registry.yml"
 	   end
    end
 end

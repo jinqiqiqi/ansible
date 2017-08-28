@@ -55,3 +55,27 @@ docker_registry_domain: "127.0.0.1"
 docker_registry_port: 5000
 registry_domain: "gitlab.boe.tt"
 
+
+
+jenkins_domain_name: "jenkins.boe.tt"
+jenkins_data_dir: "/home/Data/jenkins"
+docker_jenkins: [
+    {
+        listen: 80,
+        server_name: "jenkins.boe.tt",
+        client_max_body_size: 0,
+        stream_name: "jenkins",
+        docker_jenkins_domain: "127.0.0.1",
+        docker_jenkins_port: 8080
+
+    },
+    {
+        listen: 80,
+        server_name: "jks.boe.tt",
+        client_max_body_size: 0,
+        stream_name: "jks",
+        docker_jenkins_domain: "127.0.0.1",
+        docker_jenkins_port: 50000
+    }
+]
+
