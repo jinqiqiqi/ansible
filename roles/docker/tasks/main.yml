@@ -6,9 +6,31 @@
   with_items:
     - docker
     - docker-python
-  notify: restart docker
+  notify:
+    - restart docker service
   tags:
     - idocker
+
+# - name: start/restart Service Dockder
+#   systemd:
+#     state: started
+#     name: docker
+#   tags:
+#     - idocker
+
+# - name: "Init the docker images for docker"
+#   docker_image: 
+#     name: "{{ item }}"
+#     state: present
+#   with_items:
+#     - "centos"
+#     - "jenkins"
+#     - "jenkins"
+#     - "gitlab-ce"
+#     - "mysql"
+#     - "tomcat"
+#   tags:
+#     - idocker
 
 # - name: Remove Unofficial Docker Packages
 #   yum: name={{ item }} state=absent

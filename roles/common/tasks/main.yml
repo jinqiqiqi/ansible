@@ -12,7 +12,7 @@
 
 
 
-- name: Enable the EPEL, remi Repo
+- name: Enable the EPEL Repo
   yum: name={{ item }} state=present
   tags:
     - common

@@ -3,15 +3,25 @@
 
 - name: Create directory for jenkins data
   file:
-    path: "{{ jenkins_data_dir }}"
+    path: "{{ item }}"
     state: directory
     mode: 0777
+  with_items:
+    - "{{ jenkins_data_dir }}"
+    - "/etc/docker/certs.d/{{ registry_domain }}"
   tags:
     - docker-jenkins
 
-- name: "Login to git.ct.boe.com.cn"
+- name: "Copy cert file to the server"
+  template: src={{ registry_domain }}/ca.crt dest=/etc/docker/certs.d/{{ registry_domain }}/ca.crt
+  tags:
+    - docker-jenkins
+  notify:
+    - restart nginx
+
+- name: "Login to {{ registry_domain }}"
   docker_login:
-    registry: git.ct.boe.com.cn
+    registry: "{{ registry_domain }}"
     username: boe
     password: boe
   tags:
@@ -21,16 +31,16 @@
   docker_image: 
     name: "{{ item }}"
     state: present
-    cacert_path: "/etc/docker/certs.d/git.ct.boe.com.cn/ca.crt"
+    cacert_path: "/etc/docker/certs.d/{{ registry_domain }}/ca.crt"
   with_items:
-    - git.ct.boe.com.cn/jenkins
+    - "{{ registry_domain }}/jenkins"
   tags:
     - docker-jenkins
     
 
 - name: Start/Restart docker jenkins container
   docker_container:
-    image: git.ct.boe.com.cn/jenkins
+    image: "{{ registry_domain }}/jenkins"
     name: boe-docker-jenkins
     hostname: "{{ jenkins_domain_name }}"
     state: started

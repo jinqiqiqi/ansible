@@ -3,12 +3,14 @@
   yum: name=nginx state=present
   tags:
     - nginx
+  notify:
+    - restart nginx
 
 
-- name: restart Service Nginx
-  systemd:
-    state: started
-    name: nginx
+# - name: restart Service Nginx
+#   systemd:
+#     state: started
+#     name: nginx
 
 # - name: Copy Nginx Configuration for Wordpress
 #   template: src=default.conf dest=/etc/nginx/conf.d/default.conf

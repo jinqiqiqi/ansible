@@ -1,4 +1,7 @@
 ---
 # handlers file for docker-registry
 - name: restart nginx
-  service: name=nginx state=restarted enabled=yes
+  systemd:
+    name: nginx
+    state: restarted
+    enabled: yes

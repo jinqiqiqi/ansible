@@ -13,6 +13,7 @@
   roles:
   # - docker-gitlab
   - glusterfs
+  - docker
   # post_tasks:
   #   - name: post tasks
   #     yum: name=* state=latest

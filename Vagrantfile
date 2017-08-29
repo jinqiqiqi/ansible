@@ -66,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
 	   machine.vm.provision "ansible" do |ansible|
-	     ansible.playbook = "docker-registry.yml"
+	     ansible.playbook = "docker-jenkins.yml"
 	   end
    end
 end

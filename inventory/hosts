@@ -7,7 +7,7 @@ hpp.io ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_ssh_user=vagrant
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=kinch ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 [boe-server]
-test.boe ansible_ssh_host=192.168.121.51 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/virtual_test/libvirt/private_key
+test.boe ansible_ssh_host=192.168.33.13 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/virtual_test/libvirt/private_key
 git.ct.boe.com.cn ansible_ssh_host=10.17.100.182 ansible_ssh_port=2222 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 [hadoop]
