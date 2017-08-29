@@ -1,7 +1,7 @@
 ---
 - name: Setup the environment of docker-jenkins
-  hosts: test.boe
-  # hosts: git.ct.boe.com.cn
+  # hosts: test.boe
+  hosts: git.ct.boe.com.cn
   # hosts: boe-server
   become_user: root
   become: yes

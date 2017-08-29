@@ -59,6 +59,8 @@ registry_domain: "gitlab.boe.tt"
 
 jenkins_domain_name: "jenkins.boe.tt"
 jenkins_data_dir: "/home/Data/jenkins"
+jenkins_web_port: 8081
+jenkins_api_port: 50000
 docker_jenkins: [
     {
         listen: 80,

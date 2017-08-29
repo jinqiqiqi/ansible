@@ -47,8 +47,8 @@
     restart: yes
     env: 
     ports:
-        - "8080:8080"
-        - "50000:50000"
+        - "{{ jenkins_web_port }}:8080"
+        - "{{ jenkins_api_port }}:50000"
     volumes:
         - "{{ jenkins_data_dir }}:/var/jenkins_home"
         - "/var/run/docker.sock:/var/run/docker.sock"

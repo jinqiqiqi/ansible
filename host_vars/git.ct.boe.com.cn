@@ -21,9 +21,7 @@ gitlab_email_from: "gitlab@boe.com.cn"
 gitlab_email_display_name: "Gitlab通知邮件"
 gitlab_email_reply_to: "gitlab@boe.com.cn"
 gitlab_email_subject_suffix: ""
-
 gitlab_ssh_port: "22"
-
 
 docker_gitlab_ce: [
   {
@@ -56,4 +54,30 @@ docker_registry_hosts: [
 docker_registry_domain: "127.0.0.1"
 docker_registry_port: 5000
 registry_domain: "git.ct.boe.com.cn"
+
+
+
+jenkins_domain_name: "jenkins.ct.boe.com.cn"
+jenkins_data_dir: "/home/Data/jenkins"
+jenkins_web_port: 8081
+jenkins_api_port: 50000
+docker_jenkins: [
+    {
+        listen: 80,
+        server_name: "jenkins.ct.boe.com.cn",
+        client_max_body_size: 0,
+        stream_name: "jenkins",
+        docker_jenkins_domain: "127.0.0.1",
+        docker_jenkins_port: 8081
+
+    },
+    {
+        listen: 80,
+        server_name: "jks.ct.boe.com.cn",
+        client_max_body_size: 0,
+        stream_name: "jks",
+        docker_jenkins_domain: "127.0.0.1",
+        docker_jenkins_port: 50000
+    }
+]
 
