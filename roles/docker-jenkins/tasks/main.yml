@@ -41,7 +41,7 @@
 - name: Start/Restart docker jenkins container
   docker_container:
     image: "{{ registry_domain }}/jenkins"
-    name: boe-docker-jenkins
+    name: boe-jenkins
     hostname: "{{ jenkins_domain_name }}"
     state: started
     restart: yes
@@ -52,6 +52,8 @@
     volumes:
         - "{{ jenkins_data_dir }}:/var/jenkins_home"
         - "/var/run/docker.sock:/var/run/docker.sock"
+        - "/opt/apache-maven-3.5.0:/opt/apache-maven-3.5.0"
+        - "/opt/jdk1.8.0_144:/opt/jdk1.8.0_144"
   tags:
     - docker-jenkins
 

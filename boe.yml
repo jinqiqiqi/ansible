@@ -1,4 +1,5 @@
 ---
+
 - name: Setup the environment of docker
   hosts: test.boe
   # hosts: git.ct.boe.com.cn

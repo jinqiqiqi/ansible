@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 			# Customize the amount of memory on the VM:
 	  		libvirt.memory = "1024"
-			libvirt.cpus = "2"
+			libvirt.cpus = "3"
 			# libvirt.host = "test.boe"
 			# libvirt.driver="virtualbox"
 		end
