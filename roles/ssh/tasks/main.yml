@@ -6,6 +6,7 @@
   with_items:
     - openssh-server
     - openssh-clients
+    - rsync
   notify: restart sshd
 
 - name: Generate SSH Keys
@@ -28,14 +29,12 @@
     manage_dir: yes
     key: "{{ lookup('file', 'node_files/{{item}}/root/.ssh/id_rsa.pub')}}"
   with_items:
-    - namenode
-    - datanode1
+    - master
 
 - name: Add hosts
   lineinfile:
     path: /etc/hosts
     line: "{{hostvars[item]['ansible_ssh_host']}} {{item}}"
   with_items:
-    - namenode
-    - datanode1
+    - master
 

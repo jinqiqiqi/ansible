@@ -1,0 +1,21 @@
+---
+# tasks file for roles/hadoop
+
+- name: Download hadoop-2.7.4.tar.gz from internet
+  get_url:
+    url: http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.7.4/hadoop-2.7.4.tar.gz
+    dest: /opt/hadoop-2.7.4.tar.gz
+    timeout: 60
+  tags:
+    - hadoop
+
+- name: Unarchive the hadoop-2.7.4 file.
+  unarchive:
+    src: "/opt/hadoop-2.7.4.tar.gz"
+    dest: "/opt/"
+    remote_src: True
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - hadoop

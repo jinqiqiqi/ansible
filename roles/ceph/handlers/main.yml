@@ -1,7 +1,0 @@
----
-# handlers file for roles/ceph
-
-- name: restart ceph
-  service: name={{ item }} state=restarted enabled=yes
-  with_items:
-    - ceph???
