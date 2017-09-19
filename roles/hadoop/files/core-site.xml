@@ -18,21 +18,13 @@
 
 <configuration>
   <property>
-    <name>fs.default.name</name>
-    <value>hdfs://master:9000</value>
-  </property>
-  <property>
-    <name>dfs.permissions</name>
-    <value>false</value>
-  </property>
-  <property>
     <name>hadoop.tmp.dir</name>
     <value>/opt/hadoop-2.7.4/tmp</value>
     <description>Temporary Directory</description>
   </property>
   <property>
     <name>fs.defaultFs</name>
-    <value>hdfs://master:54310</value>
+    <value>hdfs://master:9000</value>
     <description>Use HDFS as file storage engine.</description>
   </property>
 
