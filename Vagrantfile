@@ -11,38 +11,38 @@ servers = [
     :hostname => 'master',
     :ip => '192.168.33.40',
     :memory => "512",
-    :cups => 2
+    :cpus => 2
     # :forwards => {
     #   80 => 1081,
     #   443 => 1443
     # }
+  },
+  {
+    :hostname => 'slave1',
+    :ip => '192.168.33.41',
+    :memory => "256",
+    :cpus => 2
+        # :forwards => {
+    #   80 => 1082,
+    #   443 => 1444
+    # }
+  },
+  {
+    :hostname => 'slave2',
+    :ip => '192.168.33.42',
+    :memory => "256",
+    :cpus => 2
+    # :forwards => {
+    #   80 => 1082,
+    #   443 => 1444
+    # }
   }
   # ,
-  # {
-  #   :hostname => 'slave1',
-  #   :ip => '192.168.33.41',
-  #   :memory => "256",
-  #   :cups => 2
-  #       # :forwards => {
-  #   #   80 => 1082,
-  #   #   443 => 1444
-  #   # }
-  # },
-  # {
-  #   :hostname => 'slave2',
-  #   :ip => '192.168.33.42',
-  #   :memory => "256",
-  #   :cups => 2,
-  #   # :forwards => {
-  #   #   80 => 1082,
-  #   #   443 => 1444
-  #   # }
-  # },
   # {
   #   :hostname => 'client',
   #   :ip => '192.168.33.43',
   #   :memory => "256",
-  #   :cups => 2
+  #   :cpus => 2
   #   # :forwards => {
   #   #   80 => 1082,
   #   #   443 => 1444
@@ -54,7 +54,7 @@ servers = [
   #   :hostname => 'slave3',
   #   :ip => '192.168.33.44',
   #   :memory => "256",
-  #   :cups => 2
+  #   :cpus => 2
   #   # :forwards => {
   #   #   80 => 1082,
   #   #   443 => 1444
@@ -65,7 +65,7 @@ servers = [
   #   :hostname => 'slave4',
   #   :ip => '192.168.33.45',
   #   :memory => "256",
-  #   :cups => 2
+  #   :cpus => 2
   #   # :forwards => {
   #   #   80 => 1082,
   #   #   443 => 1444
@@ -75,7 +75,7 @@ servers = [
   #   :hostname => 'slave5',
   #   :ip => '192.168.33.46',
   #   :memory => "256",
-  #   :cups => 2
+  #   :cpus => 2
   #   # :forwards => {
   #   #   80 => 1082,
   #   #   443 => 1444
@@ -85,7 +85,7 @@ servers = [
   #   :hostname => 'slave6',
   #   :ip => '192.168.33.47',
   #   :memory => "256",
-  #   :cups => 2
+  #   :cpus => 2
   #   # :forwards => {
   #   #   80 => 1082,
   #   #   443 => 1444
@@ -96,7 +96,7 @@ servers = [
   #   :hostname => 'slave7',
   #   :ip => '192.168.33.48',
   #   :memory => "256",
-  #   :cups => 2
+  #   :cpus => 2
   #   # :forwards => {
   #   #   80 => 1082,
   #   #   443 => 1444
@@ -106,7 +106,7 @@ servers = [
   #   :hostname => 'slave8',
   #   :ip => '192.168.33.49',
   #   :memory => "256",
-  #   :cups => 2
+  #   :cpus => 2
   #   # :forwards => {
   #   #   80 => 1082,
   #   #   443 => 1444
@@ -137,7 +137,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
       server_config.vm.provider :libvirt do |vm|
         # vm.name = opts[:hostname]
         vm.memory = opts[:memory]
-        vm.cpus = opts[:cups]
+        vm.cpus = opts[:cpus]
         # vm.storage :file, :size => '2G', :allow_existing => true, :type => 'qcow2'
       end
     end

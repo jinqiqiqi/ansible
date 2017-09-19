@@ -30,6 +30,8 @@
     key: "{{ lookup('file', 'node_files/{{item}}/root/.ssh/id_rsa.pub')}}"
   with_items:
     - master
+    - slave1
+    - slave2
 
 - name: Add hosts
   lineinfile:
@@ -37,4 +39,6 @@
     line: "{{hostvars[item]['ansible_ssh_host']}} {{item}}"
   with_items:
     - master
+    - slave1
+    - slave2
 

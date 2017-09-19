@@ -36,8 +36,8 @@ client ansible_ssh_host=192.168.33.43 ansible_ssh_port=22 ansible_ssh_user=vagra
 [hadoop-master]
 master
 
-[hadoop-slaves]
+[hadoop-slave]
 slave1
 slave2
-client
+# client
 
