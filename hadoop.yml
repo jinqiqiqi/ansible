@@ -1,6 +1,6 @@
 ---
 - name: Setup the environment of hadoop cluster
-  hosts: hadoop-master hadoop-slave
+  hosts: hadoop
   become_user: root
   become: yes
   
@@ -9,9 +9,6 @@
   #     yum: name=* state=latest
 
   roles:
-    - java8
-    - ssh
-    - ntpd
     - hadoop
 
 

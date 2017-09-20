@@ -3,9 +3,10 @@
 
 - name: Download the jdk-8u144
   get_url:
-    url: http://ftp.heanet.ie/mirrors/funtoo/distfiles/oracle-java/jdk-8u144-linux-x64.tar.gz
+    url: http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u144-linux-x64.tar.gz
     dest: /opt/jdk-8u144-linux-x64.tar.gz
-    timeout: 30
+    checksum: sha256:e8a341ce566f32c3d06f6d0f0eeea9a0f434f538d22af949ae58bc86f2eeaae4
+    timeout: 60
   tags:
     - java
 

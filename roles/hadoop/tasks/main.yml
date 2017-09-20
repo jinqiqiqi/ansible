@@ -22,7 +22,33 @@
   tags:
     - hadoop
 
+- name: Making sub-directories for hadoop
+  file:
+    path: '/opt/hadoop-2.7.4/{{ item }}'
+    state: directory
+    mode: 0755
+  with_items:
+    - tmp
+    - hdfs
+    - hdfs/namenode
+    - hdfs/tmp
+    - hdfs/datanode
+  tags:
+    - hadoop
+
 # configure env
+- name: Disable ipv6 on nodes
+  sysctl:
+    name: '{{ item }}'
+    value: 1
+    sysctl_file: '/etc/sysctl.conf'
+  with_items:
+    - 'net.ipv6.conf.all.disable_ipv6'
+    - 'net.ipv6.conf.default.disable_ipv6'
+    - 'net.ipv6.conf.lo.disable_ipv6'
+  tags:
+    - hadoopv
+
 - name: settings to ~/.bashrc
   lineinfile:
     path: ~/.bashrc
@@ -32,10 +58,12 @@
     - "## Setting JAVA_HOME and PATH for all USERS ##"
     - "export JAVA_HOME=/opt/jdk1.8.0_144"
     - "export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
-    - "export HADOOP_PREFIX=/opt/hadoop-2.7.4"
-    - "export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop"
-    - "export HADOOP_LOG_DIR=$HADOOP_PREFIX/logs"
-    - "export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_PREFIX/bin/:$HADOOP_PREFIX/sbin/"
+    - "export HADOOP_HOME=/opt/hadoop-2.7.4"
+    - "export HADOOP_PREFIX=$HADOOP_HOME"
+    - "export YARN_HOME=$HADOOP_HOME"
+    - "export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop"
+    - "export HADOOP_LOG_DIR=$HADOOP_HOME/logs"
+    - "export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin/:$HADOOP_HOME/sbin/"
   tags:
     - hadoop
 
@@ -46,33 +74,14 @@
     owner: root
     group: root
     mode: 0755
-    # creates: "/opt/hadoop-2.7.4/etc/hadoop/masters"
   with_items:
     - core-site.xml
     - hdfs-site.xml
     - mapred-site.xml
-    - yarn-site.xml
     - masters
     - slaves
+    - yarn-site.xml
   tags:
     - hadoop
-
-# - name: Update core-site.xml for slaves
-#   copy:
-#     src: "{{ item }}"
-#     dest: "/opt/hadoop-2.7.4/etc/hadoop/{{ item }}"
-#     owner: root
-#     group: root
-#     mode: 0755
-#   with_items:
-#     - core-site.xml
-#     - hdfs-site.xml
-#     - mapred-site.xml
-#     - yarn-site.xml
-#     - masters
-#     - slaves
-#   when: False
-#   tags:
-#     - hadoop
 
 # service 

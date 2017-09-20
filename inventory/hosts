@@ -32,6 +32,10 @@ client ansible_ssh_host=192.168.33.43 ansible_ssh_port=22 ansible_ssh_user=vagra
 
 # slave8 ansible_ssh_host=192.168.33.49 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/slave8/libvirt/private_key
 
+[hadoop]
+master
+slave1
+slave2
 
 [hadoop-master]
 master
