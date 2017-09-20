@@ -13,10 +13,10 @@
     <value>131072</value>
   </property>
 
-  
+
   <property>
     <name>hadoop.tmp.dir</name>
-    <value>file:///opt/hadoop-2.7.4/tmp</value>
+    <value>file:///opt/hadoop-{{ hadoop_version }}/tmp</value>
     <final>true</final>
     <description>Temporary Directory</description>
   </property>

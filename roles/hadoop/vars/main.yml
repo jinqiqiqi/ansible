@@ -1,2 +1,7 @@
 ---
 # vars file for roles/hadoop
+# hadoop_version: 2.7.4
+# hadoop_sha256: 8f791bfcfa5bb7c7ccd09910d490c02910dda93b19936ec2aedb8930bc5be111
+
+hadoop_version: 2.8.1
+hadoop_sha256: b5be527578ef2c8565cd435ab4ae71a024cad704f7bf597bd792082703bd77d9

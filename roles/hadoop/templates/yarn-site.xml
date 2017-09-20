@@ -13,28 +13,28 @@
   limitations under the License. See accompanying LICENSE file.
 -->
 <configuration>
-  <property>
+  <!-- <property>
     <name>yarn.resourcemanager.address</name>
-    <value>master:18040</value>
+    <value>master:8040</value>
   </property>
 
  <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value>master:18030</value>
+    <value>master:8030</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.address</name>
-    <value>master:18088</value>
+    <value>master:8088</value>
   </property>
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>master:18025</value>
+    <value>master:8025</value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.admin.address</name>
-    <value>master:18141</value>
-  </property>
+    <value>master:8141</value>
+  </property> -->
   <property>
     <name>yarn.nodemanager.aux-services</name>
     <value>mapreduce_shuffle</value>
@@ -48,23 +48,5 @@
     <name>yarn.resourcemanager.hostname</name>
     <value>192.168.33.40</value>
   </property>
-
-<!-- 
-
-  <property>
-    <name>yarn.resourcemanager.bind-host</name>
-    <value>0.0.0.0</value>
-  </property>
-  <property>
-    <name>yarn.nodemanager.bind-host</name>
-    <value>0.0.0.0</value>
-  </property>
-   -->
-
-
-
-
-
-
 
 </configuration>
