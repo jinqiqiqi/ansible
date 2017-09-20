@@ -3,8 +3,8 @@
 <configuration>
   
   <property>
-    <name>fs.defaultFs</name>
-    <value>hdfs://master:9000/</value>
+    <name>fs.defaultFS</name>
+    <value>hdfs://master:9000</value>
     <description>Use HDFS as file storage engine.</description>
   </property>
 
@@ -12,7 +12,6 @@
     <name>io.file.buffer.size</name>
     <value>131072</value>
   </property>
-
 
   <property>
     <name>hadoop.tmp.dir</name>
