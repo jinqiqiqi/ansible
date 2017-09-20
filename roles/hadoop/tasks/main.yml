@@ -93,4 +93,25 @@
     - hadoop
     - hadoopc
 
-# service 
+# - name: Testing hostnames
+#   debug:
+#     msg: "= {{inventory_hostname }} ="
+#   when: "inventory_hostname == 'master' or inventory_hostname == 'slave1'"
+#   tags:
+#     - hadoopd
+
+
+# # service 
+# - name: Start hdfs and yarn service
+#   command: /opt/hadoop-{{ hadoop_version }}/bin/hdfs namenode -format
+#   environment:
+#     JAVA_HOME: /opt/jdk1.8.0_144
+#     HADOOP_HOME: /opt/hadoop-{{ hadoop_version }}
+#     HADOOP_PREFIX: /opt/hadoop-{{ hadoop_version }}
+#     HADOOP_HDFS_HOME: /opt/hadoop-{{ hadoop_version }}
+#   when: "inventory_hostname == 'master'"
+#   tags:
+#     - hadoopd
+
+
+

@@ -1,6 +1,7 @@
 ---
 # tasks file for ssh
 
+# install ssh package
 - name: Install SSH server and clients
   yum: name={{ item }} state=present
   with_items:
@@ -8,6 +9,8 @@
     - openssh-clients
     - rsync
   notify: restart sshd
+
+# configure the ssh settings.
 
 - name: Generate SSH Keys
   shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
