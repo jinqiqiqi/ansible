@@ -17,7 +17,7 @@ servers = [
     #   443 => 1443
     # }
   },
-<<<<<<< HEAD
+
   # {
   #   :hostname => 'slave1',
   #   :ip => '192.168.33.41',
@@ -33,32 +33,6 @@ servers = [
     # :ip => '192.168.33.42',
     # :memory => "256",
     # :cpus => 2
-=======
-  {
-    :hostname => 'slave1',
-    :ip => '192.168.33.41',
-    :memory => "256",
-    :cpus => 2
-        # :forwards => {
-    #   80 => 1082,
-    #   443 => 1444
-    # }
-<<<<<<< HEAD
-  },
-  {
-    :hostname => 'slave2',
-    :ip => '192.168.33.42',
-    :memory => "256",
-    :cpus => 2
->>>>>>> 2-merge-github-branch
-    # :forwards => {
-    #   80 => 1082,
-    #   443 => 1444
-    # }
-  # }
-  # ,
-  # {
-=======
   }
   # ,
   # {
@@ -73,7 +47,6 @@ servers = [
   # }
   # ,
   # {
->>>>>>> 0645751... add hadoop role
   #   :hostname => 'client',
   #   :ip => '192.168.33.43',
   #   :memory => "256",

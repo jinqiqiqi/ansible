@@ -22,8 +22,6 @@
     <value>yarn</value>
     <description>The framework for running mapreduce jobs</description>
   </property>
-<<<<<<< HEAD
-=======
 
   <property>
     <name>mapred.job.tracker</name>
@@ -31,6 +29,5 @@
     <description>The host and port that the MapReduce job tracker runs
 at.</description>
   </property>
->>>>>>> 0645751... add hadoop role
-  
+
 </configuration>
