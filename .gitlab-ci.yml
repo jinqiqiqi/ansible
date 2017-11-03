@@ -1,0 +1,11 @@
+image: williamyeh/ansible
+
+stages:
+    - test
+
+test_ansible:
+    stage: test
+    script:
+        - 'ansible-playbook gitlab.yml'
+    tags:
+        - ansible
