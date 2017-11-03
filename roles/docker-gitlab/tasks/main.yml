@@ -2,7 +2,7 @@
 # tasks file for docker-gitlab
 
 - name: "Pull gitlab/gitlab-ce:latest image"
-  docker_image: 
+  docker_image:
     name: "{{ item }}"
     state: present
   with_items:
@@ -27,7 +27,7 @@
         - "{{ gitlab_data_dir }}:/var/opt/gitlab/"
   tags:
     - gitlabce
-    
+
 - name: Update the nginx config
   template: src=gitlab.conf dest=/etc/nginx/conf.d/
   tags:

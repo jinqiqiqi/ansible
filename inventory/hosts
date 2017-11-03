@@ -11,6 +11,7 @@ test.boe ansible_ssh_host=192.168.33.13 ansible_ssh_port=22 ansible_ssh_user=vag
 git.ct.boe.com.cn ansible_ssh_host=10.17.100.182 ansible_ssh_port=2222 ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 
+
 [glusterfs]
 master ansible_ssh_host=192.168.33.40 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/master/libvirt/private_key
 
@@ -45,3 +46,6 @@ slave1
 slave2
 # client
 
+
+[local-gitlab]
+master
