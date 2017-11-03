@@ -1,20 +1,20 @@
 ---
 # tasks file for docker-gitlab
 
-- name: "Pull gitlab/gitlab-ce:latest image"
+- name: "Pull {{gitlab_repository_name}}/gitlab-ce:latest image: {{gitlab_repository_name}}"
   docker_image:
     name: "{{ item }}"
     state: present
   with_items:
-    - gitlab/gitlab-ce:latest
+    - "{{gitlab_repository_name}}/gitlab-ce:latest"
   tags:
     - gitlabce
 
-- name: Start/Restart Gitlab container
+- name: "Start/Restart Gitlab container: {{gitlab_repository_name}}"
   docker_container:
     name: gitlab_ce
     hostname: "{{ gitlab_domain_name }}"
-    image: gitlab/gitlab-ce:latest
+    image: "{{gitlab_repository_name}}/gitlab-ce:latest"
     state: started
     restart: yes
     env: GITLAB_OMNIBUS_CONFIG="external_url '{{ gitlab_protocl }}{{ gitlab_domain_name }}'; gitlab_rails['smtp_enable']={{smtp_enable}}; gitlab_rails['smtp_address']='{{smtp_address}}'; gitlab_rails['smtp_port']={{smtp_port}}; gitlab_rails['smtp_user_name']='{{smtp_user_name}}'; gitlab_rails['smtp_password']='{{smtp_password}}'; gitlab_rails['smtp_domain']='{{smtp_domain}}'; gitlab_rails['smtp_authentication']='{{smtp_authentication}}'; gitlab_rails['smtp_enable_starttls_auto']={{smtp_enable_starttls_auto}}; gitlab_rails['smtp_tls']={{smtp_tls}};gitlab_rails['smtp_openssl_verify_mode']='{{smtp_openssl_verify_mode}}';gitlab_rails['gitlab_email_enabled'] = {{gitlab_email_enabled}};gitlab_rails['gitlab_email_from'] = '{{gitlab_email_from}}';gitlab_rails['gitlab_email_display_name'] = '{{gitlab_email_display_name}}';gitlab_rails['gitlab_email_reply_to'] = '{{gitlab_email_reply_to}}';gitlab_rails['gitlab_email_subject_suffix'] = '{{gitlab_email_subject_suffix}}';"
@@ -22,8 +22,8 @@
         - "{{ gitlab_ssh_port }}:22"
         - "{{ docker_gitlab_ce_port }}:80"
     volumes:
-        - "{{ gitlab_config_dir }}:/etc/gitlab"
-        - "{{ gitlab_logs_dir }}:/var/log/gitlab"
+        - "{{ gitlab_config_dir }}:/etc/gitlab/"
+        - "{{ gitlab_logs_dir }}:/var/log/gitlab/"
         - "{{ gitlab_data_dir }}:/var/opt/gitlab/"
   tags:
     - gitlabce

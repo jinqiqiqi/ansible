@@ -6,6 +6,8 @@ gitlab_config_dir: "~/Data/gitlab/config"
 gitlab_logs_dir: "~/Data/gitlab/logs"
 gitlab_data_dir: "~/Data/gitlab/data"
 
+gitlab_repository_name: "git.ct.boe.com.cn"
+
 smtp_enable: "true"
 smtp_address: "smtp.boe.com.cn"
 smtp_port: "25"
@@ -27,7 +29,7 @@ docker_gitlab_ce: [
     {
         listen: 80,
         server_name: gitlab.boe.tt,
-        client_max_body_size: 0  
+        client_max_body_size: 0
     }
 ]
 
@@ -80,4 +82,3 @@ docker_jenkins: [
         docker_jenkins_port: 50000
     }
 ]
-

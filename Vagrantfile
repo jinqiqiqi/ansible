@@ -10,7 +10,7 @@ servers = [
   {
     :hostname => 'master',
     :ip => '192.168.33.40',
-    :memory => "512",
+    :memory => "1024",
     :cpus => 2
     # :forwards => {
     #   80 => 1081,
@@ -33,7 +33,7 @@ servers = [
     # :ip => '192.168.33.42',
     # :memory => "256",
     # :cpus => 2
-  }
+  # }
   # ,
   # {
   #   :hostname => 'slave2',
@@ -141,6 +141,8 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
       opts[:forwards].each do |guest_port, host_port|
         config.vm.network :forwarded_port, guest: guest_port, host: host_port
       end if opts[:forwards]
+
+      config.ssh.port = 22
 
       server_config.vm.provider :libvirt do |vm|
         # vm.name = opts[:hostname]

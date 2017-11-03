@@ -6,6 +6,9 @@ gitlab_config_dir: "/home/Data/gitlab/config"
 gitlab_logs_dir: "/home/Data/gitlab/logs"
 gitlab_data_dir: "/home/Data/gitlab/data"
 
+gitlab_repository_name: "gitlab"
+
+
 smtp_enable: "true"
 smtp_address: "smtp.boe.com.cn"
 smtp_port: "25"
@@ -80,4 +83,3 @@ docker_jenkins: [
         docker_jenkins_port: 50000
     }
 ]
-

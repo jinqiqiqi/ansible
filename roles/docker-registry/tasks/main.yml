@@ -2,14 +2,14 @@
 # tasks file for docker-registry
 
 - name: "Pull docker reigstry image"
-  docker_image: 
+  docker_image:
     name: "{{ item }}"
     state: present
   with_items:
     - "registry"
   tags:
     - docker-registry
-    
+
 
 - name: Start/Restart docker registry container
   docker_container:
@@ -18,7 +18,7 @@
     image: registry
     state: started
     restart: yes
-    env: 
+    env:
     ports:
         - "5000:5000"
     volumes:
@@ -33,7 +33,7 @@
     mode: 0755
   tags:
     - docker-registry
-  
+
 - name: Nginx ssl files
   template: src={{ registry_domain }}/{{ item }} dest=/opt/nginx/ssl/
   with_items:
