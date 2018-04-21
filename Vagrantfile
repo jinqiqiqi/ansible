@@ -19,22 +19,22 @@ servers = [
     # }
   },
 
-  # {
-  #   :hostname => 'slave1',
-  #   :ip => '192.168.33.41',
-  #   :memory => "256",
-  #   :cpus => 2
-  #       # :forwards => {
-  #   #   80 => 1082,
-  #   #   443 => 1444
-  #   # }
-  # },
-  # {
-    # :hostname => 'slave2',
-    # :ip => '192.168.33.42',
-    # :memory => "256",
-    # :cpus => 2
-  # }
+  {
+    :hostname => 'slave1',
+    :ip => '192.168.33.41',
+    :memory => "256",
+    :cpus => 2
+        # :forwards => {
+    #   80 => 1082,
+    #   443 => 1444
+    # }
+  },
+  {
+    :hostname => 'slave2',
+    :ip => '192.168.33.42',
+    :memory => "256",
+    :cpus => 2
+  }
   # ,
   # {
   #   :hostname => 'slave2',

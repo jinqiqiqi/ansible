@@ -49,3 +49,8 @@ slave2
 
 [local-gitlab]
 master
+
+[galera]
+master
+slave1
+slave2

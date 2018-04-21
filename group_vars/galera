@@ -1,0 +1,7 @@
+galera_cluster_name: "galera_boe_cluster"
+
+galera_master_address: "192.168.33.40"
+galera_slave1_address: "192.168.33.41"
+galera_slave2_address: "192.168.33.42"
+
+galera_sst_auth: "sst_user:dbpass"

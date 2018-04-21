@@ -1,0 +1,2 @@
+galera_node_address: "192.168.33.41"
+galera_node_name: "slave1"

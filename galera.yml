@@ -1,0 +1,19 @@
+---
+- name: Setup the environment of Galera
+  hosts: galera
+  # hosts: git.ct.boe.com.cn
+  # hosts: boe-server
+  become_user: root
+  become: yes
+
+  # pre_tasks:
+  #   - name: Pre Task => Update Yum
+  #     yum: name=* state=latest
+
+  roles:
+  # - docker-gitlab
+  - mariadb
+  
+  # post_tasks:
+  #   - name: post tasks
+  #     yum: name=* state=latest

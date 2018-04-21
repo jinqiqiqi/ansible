@@ -1,11 +1,17 @@
 ---
 
+- name: Create MySQL Configuration File
+  template: src=mariadb.repo dest=/etc/yum.repos.d/mariadb.repo
+
+
 - name: Install MariaDB Package
   yum: name={{ item }} state=installed
   register: v_config
   with_items:
     - mariadb-server
     - mariadb-test
+    - rsync
+    - socat 
 
 # - debug: msg="hi distribution {{ ansible_distribution_version }}"
 
@@ -13,13 +19,9 @@
   command: creates='/etc/my.cnf.bak' cp /etc/my.cnf /etc/my.cnf.bak
   notify:
     - restart mariadb
-
-
-# - name: Create MySQL Configuration File
-#   template: src=my.cnf.j2 dest=/etc/my.cnf
-#   notify:
-#   - restart mariadb
-
+    
+- name: Create MySQL Galera Configuration File
+  template: src='galera.cnf.j2' dest=/etc/my.cnf.d/galera.cnf
 
 - name: MariaDB Service State
   service: name=mariadb state=started enabled=yes
